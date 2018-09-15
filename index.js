@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const cfg = require('./config.json');
 const fs = require('fs');
 const gdclient = require('node-geometry-dash');
 
@@ -33,7 +32,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    let args = message.content.slice(cfg.prefix.length).trim().split(' ');
+    let args = message.content.slice(process.env.prefix.length).trim().split(' ');
     let cmd = args.shift().toLowerCase();
 
     if (message.channel.id === "431522258452742191" || message.channel.id === "445538420945584148") {
@@ -82,7 +81,7 @@ client.on('message', message => {
         }
     }
 
-    if (!message.content.startsWith(cfg.prefix)) return;
+    if (!message.content.startsWith(process.env.prefix)) return;
 
     try {
         delete require.cache[require.resolve(`./commands/${cmd}.js`)]
@@ -101,4 +100,4 @@ client.on('message', message => {
     }
 })
 
-client.login(cfg.token);
+client.login(process.env.token);
