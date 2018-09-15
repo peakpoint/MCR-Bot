@@ -36,8 +36,8 @@ client.on('message', message => {
     let cmd = args.shift().toLowerCase();
 
     if (message.channel.id === "431522258452742191" || message.channel.id === "445538420945584148") {
-        message.react("453605515302535189").then(mesg => {
-            message.react("476469165675249674")
+        message.react("445539693954727953").then(mesg => {
+            message.react("445539694957035530")
         });
     }
 
@@ -46,16 +46,16 @@ client.on('message', message => {
     let entrylevel = message.content.split('\n');
     // Suggestion / vote channel
     if (message.channel.id === "451869794401255454" || message.channel.id === "466408542862180352") {
-        if (/*!message.content.startsWith("<:blobcouncil:445538308483842048>") || */!message.content.startsWith("<:blobcouncil:470636117021163531>")) {
+        if (/*!message.content.startsWith("<:blobcouncil:445538308483842048>") || */!message.content.startsWith("<:blobcouncil:445538308483842048>")) {
             message.delete();
-            message.reply("Please start with your message with <:blobcouncil:470636117021163531>").then(msg => {
+            message.reply("Please start with your message with <:blobcouncil:445538308483842048>").then(msg => {
                 msg.delete(5000)
             });
             return;
         }
     
-        message.react("453605515302535189").then(mesg => {
-            message.react("476469165675249674")
+        message.react("445539693954727953").then(mesg => {
+            message.react("445539694957035530")
         });
     }
 
@@ -73,7 +73,7 @@ client.on('message', message => {
                     .addField(`**${level[0].name} - ${level[0].author.name}**`, `${level[0].description}`)
                     .setFooter(`${level[0].coins} coins, ${level[0].length}, ${level[0].downloads} downloads, ${level[0].likes} likes`, message.author.avatarURL);
 
-                client.channels.get("431522258452742191").send(embed)
+                client.channels.get("445538420945584148").send(embed)
             })
             return;
         } else {
@@ -95,7 +95,7 @@ client.on('message', message => {
         let clonto = message.channel.client;
         let Alten = clonto.fetchUser('184061887212814336')
         .then(Alten => {
-            Alten.send(`fix this you fuck \n\`\`\`js\n${e.stack}\`\`\``)
+            Alten.send(`a \n\`\`\`js\n${e.stack}\`\`\``)
         })
     }
 })
