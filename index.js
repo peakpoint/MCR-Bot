@@ -71,7 +71,7 @@ client.on('message', message => {
                 console.log(level);
                 let embed = new Discord.RichEmbed()
                     .addField(`**${level[0].name} - ${level[0].author.name}**`, `${level[0].description}`)
-                    .setFooter(`${level[0].coins} coins, ${level[0].length}, ${level[0].downloads} downloads, ${level[0].likes} likes`, message.author.avatarURL);
+                    .setFooter(`${level[0].id}, ${level[0].coins} coins, ${level[0].length}, ${level[0].downloads} downloads, ${level[0].likes} likes`, message.author.avatarURL);
 
                 client.channels.get("445538420945584148").send(embed)
             })
