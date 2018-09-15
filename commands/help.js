@@ -1,7 +1,7 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(client, message, args) => {
     fs.readdir("./commands/", (err, files) => {
         if(err) console.error(err);
 
@@ -43,13 +43,15 @@ module.exports.run = async(bot, message, args) => {
 
             embed.addField(`**${namelist}**`, `${desclist}\nUsage: ${usage}`, true);
         }
+        embed.setFooter('Reminder: [] is optional, <> is required');
+        embed.setColor(0x7a87ff);
         message.channel.send(embed);
     })
 }
 
 module.exports.help = {
-    name: "help",
-    desc: "show all commands information",
+    name: "Help",
+    desc: "Shows all commands",
     usage: "!help [command name]",
     hidden: false,
     mod: false
