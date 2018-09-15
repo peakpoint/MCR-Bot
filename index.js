@@ -82,8 +82,7 @@ client.on('message', message => {
     }
 
     if (!message.content.startsWith(process.env.prefix)) return;
-    if (!message.channel.id !== "456887542453895209") return;
-
+  
     try {
         delete require.cache[require.resolve(`./commands/${cmd}.js`)]
 
