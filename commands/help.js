@@ -40,8 +40,11 @@ module.exports.run = async(client, message, args) => {
             namelist = props2.help.name;
             desclist = props2.help.desc;
             usage = props2.help.usage;
-
-            embed.addField(`**${namelist}**`, `${desclist}\nUsage: ${usage}`, true);
+            if (props2.help.mod === true) {
+                embed.addField(`**${namelist} <:modBadge_01_001:490524330464378900>**`, `${desclist}\nUsage: ${usage}`, true);
+            } else {
+                embed.addField(`**${namelist}**`, `${desclist}\nUsage: ${usage}`, true);
+            }
         }
         embed.setFooter('Reminder: [] is optional, <> is required');
         embed.setColor(0x7a87ff);
