@@ -1,7 +1,6 @@
 const GDClient = require('../GD/GD.js');
 const GD = new GDClient();
 const Discord = require('discord.js');
-const cfg = require('../config.json');
 
 module.exports.run = async(client, message, args) => {
     const embed = new Discord.RichEmbed()
