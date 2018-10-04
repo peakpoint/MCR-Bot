@@ -1,6 +1,5 @@
-'use strict';
 const request = require('request')
-const database = "http://boomlings.com/database";
+const database = "http://boomlings.com/database"
 
 class getLevel {
     /**
@@ -23,53 +22,37 @@ class getLevel {
      * @returns JSON
      */
     levels(str, diff, len, page, total, uncompleted, completed, featured, original, twoPlayer, coins, epic, star, type) {
-        if (!str) str = '';
-        if (!diff) diff = '-';
-        if (!len) len = '-';
-        if (!page) page = '0';
-        if (!total) total = '0';
-        if (!uncompleted) uncompleted = '0';
-        if (!completed) completed = '0';
-        if (!featured) featured = '0';
-        if (!original) original = '0';
-        if (!twoPlayer) twoPlayer = '0';
-        if (!coins) coins = '0';
-        if (!epic) epic = '0';
-        if (!star) star = '0';
-        if (!type) type = '0';
-
         let prom = new Promise((res, rej) => {
             request.post({
                 url: `${database}/getGJLevels21.php`,
                 form: {
                     gameVersion: "21",
                     binaryVersion: "35",
-                    str: str,
-                    diff: diff,
-                    len: len,
-                    page: page,
-                    total: total,
-                    type: type,
-                    uncompleted: uncompleted,
-                    completed: completed,
-                    featured: featured,
-                    original: original,
-                    twoPlayer: twoPlayer,
-                    coins: coins,
-                    epic: epic,
-                    star: star,
+                    str: str || '',
+                    diff: diff || '-',
+                    len: len || '-',
+                    page: page || '0',
+                    total: total || '0',
+                    type: type || '0',
+                    uncompleted: uncompleted || '0',
+                    completed: completed || '0',
+                    featured: featured || '0',
+                    original: original || '0',
+                    twoPlayer: twoPlayer || '0',
+                    coins: coins || '0',
+                    epic: epic || '0',
+                    star: star || '0',
                     secret: "Wmfd2893gb7"
                 }
             }, (e, r, b) => {
-                let levels = b.split("#")[0].split("|");
-                let lvlarr = [];
-                let demon = false;
+                let levels = b.split("#")[0].split("|")
+                let lvlarr = []
+                let demon = false
 
                 for (let i in levels) {
-                    if (levels[i] == '-1') {
-                        rej();
-                    } else {
-                        let lvlData = levels[i].split(':');
+                    if (levels[i] == '-1') rej()
+                    else {
+                        let lvlData = levels[i].split(':')
                         
                         if (lvlData[21] == '1') {
                             demon = true
@@ -79,44 +62,44 @@ class getLevel {
                             lvlData[11] = "Insane"
                         }
 
-                        if (!demon == true) {
+                        if (!demon) {
                             switch (lvlData[11]) {
                                 case "0":
                                     lvlData[11] = "N/A"
-                                    break;
+                                    break
                                 case "10":
                                     lvlData[11] = "Easy"
-                                    break;
+                                    break
                                 case "20":
                                     lvlData[11] = "Normal"
-                                    break;
+                                    break
                                 case "30":
                                     lvlData[11] = "Hard"
-                                    break;
+                                    break
                                 case "40":
                                     lvlData[11] = "Harder"
-                                    break;
+                                    break
                             }
                         } else {
                             switch (lvlData[11]) {
                                 case "0":
                                     lvlData[11] = "Demon"
-                                    break;
+                                    break
                                 case "10":
                                     lvlData[11] = "Easy Demon"
-                                    break;
+                                    break
                                 case "20":
                                     lvlData[11] = "Medium Demon"
-                                    break;
+                                    break
                                 case "30":
                                     lvlData[11] = "Hard Demon"
-                                    break;
+                                    break
                                 case "40":
                                     lvlData[11] = "Insane Demon"
-                                    break;
+                                    break
                                 case "50":
                                     lvlData[11] = "Extreme Demon"
-                                    break;
+                                    break
                             }
                         }
 
@@ -126,7 +109,7 @@ class getLevel {
                             "Medium",
                             "Long",
                             "XL"
-                        ];
+                        ]
 
                         const parsedData = {
                             name: lvlData[3],
@@ -140,8 +123,8 @@ class getLevel {
                             downloads: lvlData[13],
                             likes: lvlData[19],
                             stars: lvlData[27],
-                            featured: (lvlData[29] != 0 ? true : false),
-                            epic: (lvlData[31] != 0 ? true : false),
+                            featured: lvlData[29] != 0,
+                            epic: lvlData[31] != 0,
                             description: new Buffer(lvlData[35].toString(), "base64").toString(),
                             coins: lvlData[41],
                             version: lvlData[5],
@@ -149,18 +132,18 @@ class getLevel {
                             requestedStars: lvlData[45]
                         }
 
-                        let authors = b.split("#")[1].split("|");
+                        let authors = b.split("#")[1].split("|")
                         for (let a in authors) {
                             if (authors[a].split(":")[0] == lvlData[7]) {
-                                parsedData.author.name = authors[a].split(":")[1];
+                                parsedData.author.name = authors[a].split(":")[1]
                             }
                         }
 
-                        let songs = b.split("#")[2].split(":");
+                        let songs = b.split("#")[2].split(":")
                         if (lvlData[53] != "0") {
                             for (let s in songs) {
                                 if (songs[s].split("~|~")[1] == lvlData[53]) {
-                                    let song = songs[s].split("~|~");
+                                    let song = songs[s].split("~|~")
                                     parsedData.song = {
                                         name: song[3],
                                         author: song[7],
@@ -171,31 +154,31 @@ class getLevel {
                                 }
                             }
                         } else {
-                            lvlData[47] = lvlData[15];
-                            let mainSongs = {
-                                "0": ["Stereo Madness", "ForeverBound"],
-                                "1": ["Back On Track", "DJVI"],
-                                "2": ["Polargeist", "Step"],
-                                "3": ["Dry Out", "DJVI"],
-                                "4": ["Base After Base", "DJVI"],
-                                "5": ["Cant Let Go", "DJVI"],
-                                "6": ["Jumper", "Waterflame"],
-                                "7": ["Time Machine", "Waterflame"],
-                                "8": ["Cycles", "DJVI"],
-                                "9": ["xStep", "DJVI"],
-                                "10": ["Clutterfunk", "Waterflame"],
-                                "11": ["Theory of Everything", "DJ-Nate"],
-                                "12": ["Electroman Adventures", "Waterflame"],
-                                "13": ["Clubstep", "DJ-Nate"],
-                                "14": ["Electrodynamix", "DJ-Nate"],
-                                "15": ["Hexagon Force", "Waterflame"],
-                                "16": ["Blast Processing", "Waterflame"],
-                                "17": ["Theory of Everything 2", "DJ-Nate"],
-                                "18": ["Geometrical Dominator", "Waterflame"],
-                                "19": ["Deadlocked", "F-777"],
-                                "20": ["Fingerbang", "MDK"]
-                            }
-                            let song = mainSongs[lvlData[47] + ""];
+                            lvlData[47] = lvlData[15]
+                            let mainSongs = [
+                                ["Stereo Madness", "ForeverBound"],
+                                ["Back On Track", "DJVI"],
+                                ["Polargeist", "Step"],
+                                ["Dry Out", "DJVI"],
+                                ["Base After Base", "DJVI"],
+                                ["Cant Let Go", "DJVI"],
+                                ["Jumper", "Waterflame"],
+                                ["Time Machine", "Waterflame"],
+                                ["Cycles", "DJVI"],
+                                ["xStep", "DJVI"],
+                                ["Clutterfunk", "Waterflame"],
+                                ["Theory of Everything", "DJ-Nate"],
+                                ["Electroman Adventures", "Waterflame"],
+                                ["Clubstep", "DJ-Nate"],
+                                ["Electrodynamix", "DJ-Nate"],
+                                ["Hexagon Force", "Waterflame"],
+                                ["Blast Processing", "Waterflame"],
+                                ["Theory of Everything 2", "DJ-Nate"],
+                                ["Geometrical Dominator", "Waterflame"],
+                                ["Deadlocked", "F-777"],
+                                ["Fingerbang", "MDK"]
+                            ]
+                            let song = mainSongs[lvlData[47]]
                             parsedData.song = {
                                 name: song[0],
                                 author: song[1],
@@ -222,29 +205,24 @@ class getLevel {
      * @returns JSON
      */
     Users(str, total, page) {
-        if (!str) str = '';
-        if (!page) page = '0';
-        if (!total) total = '0';
-
         let prom = new Promise((res, rej) => {
             request.post({
                 url: `${database}/getGJUsers20.php`,
                 form: {
                     gameVersion: "21",
                     binaryVersion: "35",
-                    str: str,
-                    page: page,
-                    total: total,
+                    str: str || '',
+                    page: page || '0',
+                    total: total || '0',
                     secret: "Wmfd2893gb7"
                 }
             }, (e, r, b) => {
-                if (b == "-1")
-                    rej();
+                if (b == "-1") rej()
                 else {
-                    let users = b.split("#")[0].split("|");
-                    let userarr = [];
+                    let users = b.split("#")[0].split("|")
+                    let userarr = []
                     for (let user of users) {
-                        user = user.split(":");
+                        user = user.split(":")
                         const parsedData = {
                             username: user[1],
                             id: user[3],
@@ -255,9 +233,9 @@ class getLevel {
                             creatorPoints: user[25],
                             extID: user[21]
                         }
-                        userarr.push(parsedData);
+                        userarr.push(parsedData)
                     }
-                    res(userarr);
+                    res(userarr)
                 }
             })
         })
@@ -265,4 +243,4 @@ class getLevel {
     }
 }
 
-module.exports = getLevel; 
+module.exports = getLevel
