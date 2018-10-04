@@ -40,134 +40,19 @@ module.exports.run = async(client, message, args) => {
                     embed.setFooter(`${levels[0].coins} coins, ${levels[0].length}, ${levels[0].downloads} downloads, ${levels[0].likes} likes`)
                 }
             }
-            if (levels[0].epic == true) {
-                switch(levels[0].difficulty) {
-                    case "N/A":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/naepic.png")
-                        break;
-                    case "Auto":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/autoepic.png")
-                        break;
-                    case "Easy":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/easyepic.png")
-                        break;
-                    case "Normal":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/normalepic.png")
-                        break;
-                    case "Hard":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/hardepic.png")
-                        break;
-                    case "Harder":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/harderepic.png")
-                        break;
-                    case "Insane":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/insaneepic.png")
-                        break;
-                    case "Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/demonepic.png")
-                        break;
-                    case "Easy Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/EasyDem.png")
-                        break;
-                    case "Medium Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/MedDem.png")
-                        break;
-                    case "Hard Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/demonepic.png")
-                        break;
-                    case "Insane Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/InsaneDem.png")
-                        break;
-                    case "Extreme Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/EPIC/ExtremeDem.png")
-                        break;
-                }
-            } else if (levels[0].featured == true) {
-                switch(levels[0].difficulty) {
-                    case "N/A":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/nafeat.png")
-                        break;
-                    case "Auto":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/autofeat.png")
-                        break;
-                    case "Easy":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/easyfeat.png")
-                        break;
-                    case "Normal":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/normalfeat.png")
-                        break;
-                    case "Hard":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/hardfeat.png")
-                        break;
-                    case "Harder":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/harderfeat.png")
-                        break;
-                    case "Insane":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/insanefeat.png")
-                        break;
-                    case "Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/demonfeat.png")
-                        break;
-                    case "Easy Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/EasyDemFeat.png")
-                        break;
-                    case "Medium Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/MedDemFeat.png")
-                        break;
-                    case "Hard Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/demonfeat.png")
-                        break;
-                    case "Insane Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/InsaneDemFeat.png")
-                        break;
-                    case "Extreme Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/FEATURED/ExtremeDemFeat.png")
-                        break;
-                }
-            } else {
-                switch(levels[0].difficulty) {
-                    case "N/A":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/NA.png")
-                        break;
-                    case "Auto":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/Auto.png")
-                        break;
-                    case "Easy":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/Easy.png")
-                        break;
-                    case "Normal":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/Normal.png")
-                        break;
-                    case "Hard":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/Hard.png")
-                        break;
-                    case "Harder":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/Harder.png")
-                        break;
-                    case "Insane":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/Insane.png")
-                        break;
-                    case "Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/Demon_Face.png")
-                        break;
-                    case "Easy Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/EasyDemon.png")
-                        break;
-                    case "Medium Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/MediumDemon.png")
-                        break;
-                    case "Hard Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/Demon_Face.png")
-                        break;
-                    case "Insane Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/InsaneDemon.png")
-                        break;
-                    case "Extreme Demon":
-                        embed.setThumbnail("https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/NONFEATURED/ExtremeDemon.png")
-                        break;
-                }
-            }
             console.log(levels[0].difficulty)
+
+            let rating;
+            let difficulty = levels[0].difficulty
+            difficulty = difficulty.replace(/\s/g, '');
+            difficulty = difficulty.replace('/', '');
+            console.log(difficulty)
+
+            if (levels[0].epic == true) rating = "EPIC"
+            else if (levels[0].featured == true) rating = "FEATURED"
+            else rating = "NONFEATURED";
+
+            embed.setThumbnail(`https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/${rating}/${difficulty}.png`)
 
         }
         message.channel.send(embed);
