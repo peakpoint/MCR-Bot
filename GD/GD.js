@@ -147,7 +147,7 @@ class getLevel {
                             version: lvlData[5],
                             verifiedCoins: (lvlData[43] == 1 ? true : false),
                             requestedStars: lvlData[45],
-                            length: lengtharr[parseInt(lvlData[35])],
+                            length: lengtharr[parseInt(lvlData[35])]
                         }
 
                         let authors = b.split("#")[1].split("|");
