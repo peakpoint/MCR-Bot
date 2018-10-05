@@ -143,11 +143,11 @@ class getLevel {
                             featured: (lvlData[29] != 0 ? true : false),
                             epic: (lvlData[31] != 0 ? true : false),
                             description: new Buffer(lvlData[35].toString(), "base64").toString(),
-                            coins: lvlData[41],
+                            coins: lvlData[43],
                             version: lvlData[5],
                             verifiedCoins: (lvlData[43] == 1 ? true : false),
                             requestedStars: lvlData[45],
-                            length: lengtharr[parseInt(lvlData[35])]
+                            length: lengtharr[parseInt(lvlData[37])]
                         }
 
                         let authors = b.split("#")[1].split("|");
