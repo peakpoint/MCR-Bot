@@ -44,7 +44,7 @@ class getLevel {
                     secret: 'Wmfd2893gb7'
                 }
             }, (e, r, b) => {
-                if (lvl == '-1') rej()
+                if (b == '-1') rej()
 
                 let [levels, author, songs] = b.split('#'), lvlarr = [],
                 diffArr = ['N/A', 'Easy', 'Normal', 'Hard', 'Harder', 'Insane', 'Demon', 'Easy Demon', 'Medium Demon', 'Hard Demon', 'Insane Demon', 'Extreme Demon']
