@@ -133,7 +133,7 @@ class getLevel {
     }
 
     /**
-     * Gets information on a user
+     * Gets information on a user | NOT DONE YET
      * @param {string} str
      * @param {number} total
      * @param {number} page - Currently not working because of the state of the server currently
