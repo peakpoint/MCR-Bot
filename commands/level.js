@@ -11,7 +11,7 @@ module.exports.run = async(client, message, args) => {
             embed.setTitle(`<:info:453605020529721356> Found ${levels.length} different levels`)
             for (let lvl of levels) embed.addField(`${j++}. **${lvl.name} - ${lvl.author.name}** (${lvl.id})`, lvl.description || '(No description provided)')
         } else {
-            let lvl = levels
+            let lvl = levels[0]
 
             embed.addField(`**${lvl.name} - ${lvl.author.name}** (${lvl.id})`, lvl.description || '(No description provided)')
             embed.setFooter(`${lvl.coins} coins, ${lvl.length}, ${lvl.downloads} downloads, ${lvl.likes} likes${lvl.rating ? `, ${lvl.rating}!` : ''}`)
