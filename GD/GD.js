@@ -44,88 +44,89 @@ class getLevel {
                     secret: 'Wmfd2893gb7'
                 }
             }, (e, r, b) => {
+                if (lvl == '-1') rej()
+
                 let [levels, author, songs] = b.split('#'), lvlarr = [],
-                diffArr = ['N/A', 'Easy', 'Normal', 'Hard', 'Harder', 'Insane',
-                    'Demon', 'Easy Demon', 'Medium Demon', 'Hard Demon', 'Insane Demon', 'Extreme Demon']
+                diffArr = ['N/A', 'Easy', 'Normal', 'Hard', 'Harder', 'Insane', 'Demon', 'Easy Demon', 'Medium Demon', 'Hard Demon', 'Insane Demon', 'Extreme Demon']
 
                 author = author.split('|').map(a => a.split(':'))
                 songs = songs.split(':').map(s => s.split('~|~'))
 
                 for (let lvl of levels.split('|')) {
-                    if (lvl == '-1') rej()
-                    else {
-                        const lvlData = lvl.split(':'), lengtharr = ['Tiny', 'Short', 'Medium', 'Long', 'XL'],
-                        parsedData = {
-                            name: lvlData[3],
-                            id: lvlData[1],
-                            author: { id: lvlData[7] },
-                            difficulty: lvlData[25] ? 'Auto' : diffArr[lvlData[11] / 10 + (lvlData[21] ? 6 : 0)],
-                            downloads: lvlData[13],
-                            likes: lvlData[19],
-                            stars: lvlData[27],
-                            demon: !!lvlData[21],
-                            rating: +lvlData[31] ? 'Epic' : +lvlData[29] ? 'Featured' : '',
-                            description: new Buffer(lvlData[35].toString(), 'base64').toString(),
-                            coins: lvlData[43],
-                            version: lvlData[5],
-                            verifiedCoins: lvlData[43] == 1,
-                            requestedStars: lvlData[45],
-                            length: lengtharr[lvlData[37]]
-                        }
+                    const lvlData = lvl.split(':'), lengtharr = ['Tiny', 'Short', 'Medium', 'Long', 'XL'],
+                    parsedData = {
+                        name: lvlData[3],
+                        id: lvlData[1],
+                        author: {
+                            name: '',
+                            id: lvlData[7]
+                        },
+                        difficulty: lvlData[25] ? 'Auto' : diffArr[lvlData[11] / 10 + (lvlData[21] ? 6 : 0)],
+                        downloads: lvlData[13],
+                        likes: lvlData[19],
+                        stars: lvlData[27],
+                        demon: !!lvlData[21],
+                        rating: +lvlData[31] ? 'Epic' : +lvlData[29] ? 'Featured' : '',
+                        description: new Buffer(lvlData[35].toString(), 'base64').toString(),
+                        coins: lvlData[43],
+                        version: lvlData[5],
+                        verifiedCoins: lvlData[43] == 1,
+                        requestedStars: lvlData[45],
+                        length: lengtharr[lvlData[37]]
+                    }
 
-                        for (let a of author) {
-                            if (a[0] == lvlData[7]) {
-                                parsedData.author.name = a[1]
-                            }
+                    for (let a of author) {
+                        if (a[0] == lvlData[7]) {
+                            parsedData.author.name = a[1]
                         }
+                    }
 
-                        if (lvlData[53] != '0') {
-                            for (let song of songs) {
-                                if (song[1] == lvlData[53]) {
-                                    parsedData.song = {
-                                        name: song[3],
-                                        author: song[7],
-                                        id: song[1],
-                                        size: song[9] + 'MB',
-                                        url: decodeURIComponent(song[13])
-                                    }
+                    if (lvlData[53] != '0') {
+                        for (let song of songs) {
+                            if (song[1] == lvlData[53]) {
+                                parsedData.song = {
+                                    name: song[3],
+                                    author: song[7],
+                                    id: song[1],
+                                    size: song[9] + 'MB',
+                                    url: decodeURIComponent(song[13])
                                 }
                             }
-                        } else {
-                            let mainSongs = [
-                                ['Stereo Madness', 'ForeverBound'],
-                                ['Back On Track', 'DJVI'],
-                                ['Polargeist', 'Step'],
-                                ['Dry Out', 'DJVI'],
-                                ['Base After Base', 'DJVI'],
-                                ['Cant Let Go', 'DJVI'],
-                                ['Jumper', 'Waterflame'],
-                                ['Time Machine', 'Waterflame'],
-                                ['Cycles', 'DJVI'],
-                                ['xStep', 'DJVI'],
-                                ['Clutterfunk', 'Waterflame'],
-                                ['Theory of Everything', 'DJ-Nate'],
-                                ['Electroman Adventures', 'Waterflame'],
-                                ['Clubstep', 'DJ-Nate'],
-                                ['Electrodynamix', 'DJ-Nate'],
-                                ['Hexagon Force', 'Waterflame'],
-                                ['Blast Processing', 'Waterflame'],
-                                ['Theory of Everything 2', 'DJ-Nate'],
-                                ['Geometrical Dominator', 'Waterflame'],
-                                ['Deadlocked', 'F-777'],
-                                ['Fingerbang', 'MDK']
-                            ],
-                            song = mainSongs[lvlData[15]]
-                            parsedData.song = {
-                                name: song[0],
-                                author: song[1],
-                                id: lvlData[15],
-                                size: null,
-                                url: null
-                            }
                         }
-                        lvlarr.push(parsedData)
+                    } else {
+                        let mainSongs = [
+                            ['Stereo Madness', 'ForeverBound'],
+                            ['Back On Track', 'DJVI'],
+                            ['Polargeist', 'Step'],
+                            ['Dry Out', 'DJVI'],
+                            ['Base After Base', 'DJVI'],
+                            ['Cant Let Go', 'DJVI'],
+                            ['Jumper', 'Waterflame'],
+                            ['Time Machine', 'Waterflame'],
+                            ['Cycles', 'DJVI'],
+                            ['xStep', 'DJVI'],
+                            ['Clutterfunk', 'Waterflame'],
+                            ['Theory of Everything', 'DJ-Nate'],
+                            ['Electroman Adventures', 'Waterflame'],
+                            ['Clubstep', 'DJ-Nate'],
+                            ['Electrodynamix', 'DJ-Nate'],
+                            ['Hexagon Force', 'Waterflame'],
+                            ['Blast Processing', 'Waterflame'],
+                            ['Theory of Everything 2', 'DJ-Nate'],
+                            ['Geometrical Dominator', 'Waterflame'],
+                            ['Deadlocked', 'F-777'],
+                            ['Fingerbang', 'MDK']
+                        ],
+                        song = mainSongs[lvlData[15]]
+                        parsedData.song = {
+                            name: song[0],
+                            author: song[1],
+                            id: lvlData[15],
+                            size: null,
+                            url: null
+                        }
                     }
+                    lvlarr.push(parsedData)
                 }
                 res(lvlarr)
             })
