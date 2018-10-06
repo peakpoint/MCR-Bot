@@ -4,17 +4,18 @@ module.exports.run = async(client, message, args) => {
     const embed = new Discord.RichEmbed()
 
     let j = 1
+    args = args.join(' ')
 
-    GD.levels(args.join(' ')).then(levels => {
+    GD.levels(args).then(levels => {
         if (isNaN(args)) {
             embed.setTitle(`<:info:453605020529721356> Found ${levels.length} different levels`)
             for (let lvl of levels) embed.addField(`${j++}. **${lvl.name} - ${lvl.author.name}** (${lvl.id})`, lvl.description || '(No description provided)')
         } else {
-            let lvl = levels[0]
+            let lvl = levels
 
             embed.addField(`**${lvl.name} - ${lvl.author.name}** (${lvl.id})`, lvl.description || '(No description provided)')
-            embed.setFooter(`${lvl.coins} coins, ${lvl.length}, ${lvl.downloads} downloads, ${lvl.likes} likes${lvl.rating ? `, ${args}!` : ''}`)
-            embed.setThumbnail(`https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/${lvl.rating || 'Nonfeatured'}/${lvl.difficulty.replace('/', ' ')}.png`)
+            embed.setFooter(`${lvl.coins} coins, ${lvl.length}, ${lvl.downloads} downloads, ${lvl.likes} likes${lvl.rating ? `, ${lvl.rating}!` : ''}`)
+            embed.setThumbnail(`https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/${lvl.rating || 'Nonfeatured'}/${(lvl.demon ? 'Demon/' : '') + lvl.difficulty.replace('/', ' ')}.png`)
         }
         message.channel.send(embed)
     }).catch(error => message.reply('Sorry that was in invalid level.'))

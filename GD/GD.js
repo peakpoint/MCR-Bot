@@ -63,6 +63,7 @@ class getLevel {
                             downloads: lvlData[13],
                             likes: lvlData[19],
                             stars: lvlData[27],
+                            demon: !!lvlData[21],
                             rating: +lvlData[31] ? 'Epic' : +lvlData[29] ? 'Featured' : '',
                             description: new Buffer(lvlData[35].toString(), 'base64').toString(),
                             coins: lvlData[43],
