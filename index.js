@@ -89,7 +89,12 @@ client.on('message', message => {
         let commandFile = require(`./commands/${cmd}.js`);
         commandFile.run(client, message, args);
     } catch (e) {
-        message.channel.send(`Sorry, ${cmd} is not an invalid command or there has been an error, The owner of this bot has been notified of this error and will be fixing it later`);
+        if (!fs.existsSync(`./commands/${cmd}.js`)) {
+            message.channel.send(`${cmd} is not a valid command, please use ${process.env.prefix}help for a list of commands`)
+            return
+        }
+
+        message.channel.send(`Sorry, there has been an error with ${cmd}, The owner of this bot has been notified of this error and will be fixing it later`);
         console.log(e.stack);
 
         let clonto = message.channel.client;
