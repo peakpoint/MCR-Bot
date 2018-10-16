@@ -9,10 +9,10 @@ module.exports.run = async(client, message, args) => {
     try {
         const code = args.join(" ");
         let evaled = eval(code);
-   
+
         if (typeof evaled !== "string")
           evaled = require("util").inspect(evaled);
-        
+
         embed.addField("Evaluated result:", `\`\`\`xl\n${clean(evaled)}\`\`\``)
         embed.setColor(0x3ad84c)
 
@@ -20,7 +20,7 @@ module.exports.run = async(client, message, args) => {
       } catch (err) {
         embed.setColor(0xd83939)
         embed.addField("Evaluated result:", `\`\`\`xl\n${clean(err)}\`\`\``)
-        
+
         message.channel.send(embed);
       }
 
@@ -35,7 +35,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "Eval",
     desc: "Evaluates a line of code",
-    usage: "!eval <code>",
+    usage: `${process.env.prefix}eval <code>`,
     hidden: true,
     mod: true
 }

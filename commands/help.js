@@ -15,12 +15,12 @@ module.exports.run = async(client, message, args) => {
         var desclist = "";
         var usage = "";
         let embed = new Discord.RichEmbed();
-        
+
         // send help text
         if (message.content === '!help') {
             let result = jsfiles.forEach((f, i) => {
                 let props = require(`./${f}`);
-                
+
                 if (props.help.hidden === true) return;
 
                 namelist = props.help.name;
@@ -55,7 +55,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "Help",
     desc: "Shows all commands",
-    usage: "!help [command name]",
+    usage: `${process.env.prefix}help [command name]`,
     hidden: false,
     mod: false
 }

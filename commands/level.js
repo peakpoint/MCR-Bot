@@ -25,7 +25,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: 'Level',
     desc: 'Gets information on a level',
-    usage: '!level <ID or Name>',
+    usage: `${process.env.prefix}level <ID or Name>`,
     hidden: false,
     mod: false
 }
