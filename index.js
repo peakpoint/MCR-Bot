@@ -31,6 +31,18 @@ client.on('ready', () => {
     })
 });
 
+client.on('guildMemberAdd', () => {
+    client.user.setActivity(`${client.guilds.get('440491741783523348').memberCount} People building`, {
+        type: 'WATCHING'
+    })
+})
+
+client.on('guildMemberRemove', () => {
+    client.user.setActivity(`${client.guilds.get('440491741783523348').memberCount} People building`, {
+        type: 'WATCHING'
+    })
+})
+
 client.on('message', message => {
     let args = message.content.slice(process.env.prefix.length).trim().split(' ');
     let cmd = args.shift().toLowerCase();
