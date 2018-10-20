@@ -26,7 +26,7 @@ fs.readdir('./commands/', (err, files) => {
 
 client.on('ready', () => {
     console.log(`Ready! logged in as ${client.user.tag}`);
-    client.user.setActivity(`${client.guilds.get('440491741783523348').members.size} People building`, {
+    client.user.setActivity(`${client.guilds.get('440491741783523348').memberCount} People building`, {
         type: 'WATCHING'
     })
 });
