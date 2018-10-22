@@ -10,7 +10,7 @@ fs.readdir('./commands/', (err, files) => {
   if(err) console.error(err);
 
   let cmds = files.filter(f => f.split('.').pop() === 'js');
-  
+
   if(cmds.lenght <= 0) {
     return console.log('No command files found...');
   }
@@ -21,7 +21,7 @@ fs.readdir('./commands/', (err, files) => {
     const command = require(`./commands/${f}`);
     console.log(`${i + 1}: ${f} loaded!`);
     client.commands.set(command.help.name, command);
-  }); 
+  });
 });
 
 client.on('ready', () => {
@@ -53,7 +53,7 @@ client.on('message', message => {
             });
             return;
         }
-    
+
         message.react("445539693954727953").then(mesg => {
             message.react("445539694957035530")
         });
@@ -82,7 +82,7 @@ client.on('message', message => {
     }
 
     if (!message.content.startsWith(process.env.prefix)) return;
-  
+
     try {
         delete require.cache[require.resolve(`./commands/${cmd}.js`)]
 
