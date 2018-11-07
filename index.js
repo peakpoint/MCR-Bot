@@ -26,10 +26,22 @@ fs.readdir('./commands/', (err, files) => {
 
 client.on('ready', () => {
     console.log(`Ready! logged in as ${client.user.tag}`);
-    client.user.setActivity(`${client.users.size} People building`, {
+    client.user.setActivity(`${client.guilds.get('440491741783523348').memberCount} People building`, {
         type: 'WATCHING'
     })
 });
+
+client.on('guildMemberAdd', () => {
+    client.user.setActivity(`${client.guilds.get('440491741783523348').memberCount} People building`, {
+        type: 'WATCHING'
+    })
+})
+
+client.on('guildMemberRemove', () => {
+    client.user.setActivity(`${client.guilds.get('440491741783523348').memberCount} People building`, {
+        type: 'WATCHING'
+    })
+})
 
 client.on('message', message => {
     let args = message.content.slice(process.env.prefix.length).trim().split(' ');
@@ -46,7 +58,7 @@ client.on('message', message => {
     let entrylevel = message.content.split('\n');
     // Suggestion / vote channel
     if (message.channel.id === "451869794401255454" || message.channel.id === "466408542862180352") {
-        if (/*!message.content.startsWith("<:blobcouncil:445538308483842048>") || */!message.content.startsWith("<:blobcouncil:445538308483842048>")) {
+        if (!message.content.startsWith("<:blobcouncil:445538308483842048>")) {
             message.delete();
             message.reply("Please start with your message with <:blobcouncil:445538308483842048>").then(msg => {
                 msg.delete(5000)
