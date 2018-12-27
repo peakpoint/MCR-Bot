@@ -1,13 +1,24 @@
 module.exports.run = async(client, message, args) => {
-    let min = +args[0], max = +args[1] || (min = 0, +args[0] || 1)
+    let rng
 
-    message.channel.send(args.some(s => isNaN(s || 0)) ? NaN : Math.floor(Math.random() * (max - min + 1)) + min)
+    if (args.length > 1) {
+        let min = parseInt(args[0]),
+            max = parseInt(args[1])
+
+        rng = Math.floor(Math.random() * (max - min + 1) ) + min;
+    } else if (args[0]) {
+        rng = Math.round(Math.random() * args[0])
+    } else {
+        rng = Math.round(Math.random().toString())
+    }
+
+    message.channel.send(rng)
 }
 
 module.exports.help = {
     name: "rng",
     desc: "Generates a random number",
-    usage: `${process.env.prefix}rng [min number] <max number>`,
+    usage: "!RNG [min number] <max number>",
     hidden: false,
     mod: false
 }

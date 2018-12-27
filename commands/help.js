@@ -17,7 +17,7 @@ module.exports.run = async(client, message, args) => {
         let embed = new Discord.RichEmbed();
 
         // send help text
-        if (message.content === '!help') {
+        if (message.content === `${process.env.prefix}help`) {
             let result = jsfiles.forEach((f, i) => {
                 let props = require(`./${f}`);
 
@@ -55,7 +55,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "Help",
     desc: "Shows all commands",
-    usage: `${process.env.prefix}help [command name]`,
+    usage: "!help [command name]",
     hidden: false,
     mod: false
 }

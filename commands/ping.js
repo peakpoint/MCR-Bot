@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
 exports.help = {
     name: "Ping",
     desc: "Shows latency of the bot",
-    usage: `${process.env.prefix}ping`,
+    usage: `${process.env}ping`,
     hidden: false,
     mod: false
 }

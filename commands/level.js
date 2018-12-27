@@ -7,6 +7,8 @@ module.exports.run = async(client, message, args) => {
     args = args.join(' ')
 
     GD.levels(args).then(levels => {
+
+        console.log(levels);
         if (isNaN(args)) {
             embed.setTitle(`<:info:453605020529721356> Found ${levels.length} different levels`)
             for (let lvl of levels) embed.addField(`${j++}. **${lvl.name} - ${lvl.author.name}** (${lvl.id})`, lvl.description || '(No description provided)')
@@ -15,7 +17,7 @@ module.exports.run = async(client, message, args) => {
 
             embed.addField(`**${lvl.name} - ${lvl.author.name}** (${lvl.id})`, lvl.description || '(No description provided)')
             embed.setFooter(`${lvl.coins} coins, ${lvl.length}, ${lvl.downloads} downloads, ${lvl.likes} likes${lvl.rating ? `, ${lvl.rating}!` : ''}`)
-            embed.setThumbnail(`https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/${lvl.rating || 'Nonfeatured'}/${(lvl.demon ? 'Demon/' : '') + encodeURIComponent(lvl.difficulty.replace(/\/|Hard /g, ''))}.png`)
+            embed.setThumbnail(`https://raw.githubusercontent.com/AltenGD/MCR-Bot/master/Faces/${lvl.rating || 'Nonfeatured'}/${(lvl.demon ? 'Demon/' : '') + encodeURIComponent(lvl.difficulty.replace('/', ''))}.png`)
         }
         message.channel.send(embed)
     }).catch(error => message.reply('Sorry that was in invalid level.'))
@@ -25,7 +27,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: 'Level',
     desc: 'Gets information on a level',
-    usage: `${process.env.prefix}level <ID or Name>`,
+    usage: '!level <ID or Name>',
     hidden: false,
     mod: false
 }

@@ -35,7 +35,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "Eval",
     desc: "Evaluates a line of code",
-    usage: `${process.env.prefix}eval <code>`,
+    usage: "!eval <code>",
     hidden: true,
-    mod: true
+    mod: false
 }

@@ -23,7 +23,7 @@ fs.readdir('./commands/', (err, files) => {
     client.commands.set(command.help.name, command);
   });
 });
-
+console.log("yes");
 client.on('ready', () => {
     console.log(`Ready! logged in as ${client.user.tag}`);
     client.user.setActivity(`${client.guilds.get('440491741783523348').memberCount} People building`, {
@@ -72,7 +72,7 @@ client.on('message', message => {
     }
 
     // Entries channel
-    if (message.channel.id === "490545711797108776" || message.channel.id === "486773034490003457") {
+    if (message.channel.id === "518988108985794560" || message.channel.id === "486773034490003457") {
         if (message.author.bot) return;
 
         if (!isNaN(entrylevel[1])) {
@@ -89,7 +89,10 @@ client.on('message', message => {
             })
             return;
         } else {
-            return;
+            message.delete();
+            message.reply('Entries must be in this format:\n<Creator name> - <Level name>\n<ID>\n<Stars>*\n\nIf your on mobile, press the return key will make a new line. If your on PC, press on Shift + enter will make a new line').then(msg => {
+                msg.delete(10000)
+            })
         }
     }
 
